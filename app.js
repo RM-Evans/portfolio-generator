@@ -100,15 +100,15 @@ const promptUser = () => {
 
 
 const promptProject = portfolioData => {
+    console.log(`
+    =================
+    AdD a nEw pROjEct
+    =================
+    `);
     //if no array property, create one
     if (!portfolioData.projects){
         portfolioData.projects = []
     } 
-    console.log(`
-        =================
-        AdD a nEw pROjEct
-        =================
-        `);
     return inquirer.prompt([
         {
             type: 'input',
