@@ -39,6 +39,8 @@
 //==============
 
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generatePage = require('./src/page-template');
 
 const promptUser = () => {
 
@@ -72,9 +74,26 @@ const promptUser = () => {
             }
         },
         {
+            type:'confirm',
+            name: 'confirmAbout',
+            message: 'Would you like to enter some info about yourself for an "About" section?',
+            default: true
+        },
+        {
+            //only show this if above confirm about is true
             type: 'input',
             name: 'about',
-            message: 'Provide some info about yourself:'
+            message:'provide some info about yourself:',
+            when: ({ confirmAbout }) => confirmAbout
+            // when: ({ confirmAbout }) => {
+            //     if (confirmAbout) {
+                    
+            //         return true
+            //     } else {
+                    
+            //         return false
+            //     }
+            // }
         }
     ])
 }
@@ -161,14 +180,13 @@ const promptProject = portfolioData => {
 promptUser()
 //.then(answers => console.log(answers))
 .then(promptProject)
-.then(projectAnswers => console.log(projectAnswers))
+//.then(projectAnswers => console.log(projectAnswers))
 .then(portfolioData => {
     console.log(portfolioData)
 })
 
 
-// const fs = require('fs');
-// const generatePage = require('./src/page-template');
+
 
  // *****const profileDataArgs = process.argv.slice(2);
 
